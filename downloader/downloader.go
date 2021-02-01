@@ -4,7 +4,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"sync"
 
 	"github.com/streadway/amqp"
 )
@@ -34,22 +33,16 @@ func main() {
 	failOnError(err, "Failed to register a consumer")
 
 	// Limiting number of goroutines
-	var wg sync.WaitGroup
 
 	// Start 10 goroutines waiting to fetch API
 	maxGoroutines := 10
-	wg.Add(maxGoroutines)
 
 	// Start consuming
 	forever := make(chan bool)
 	for i := 0; i < maxGoroutines; i++ {
 		go func() {
-			for {
-				d, ok := <-msgs
-				if !ok {
-					wg.Done()
-					return
-				}
+			for { // if there is nothing to do, end this goroutine
+				d := <-msgs
 				// Get data from API
 				data := fetchAPI(string(d.Body))
 
@@ -67,6 +60,7 @@ func main() {
 			}
 		}()
 	}
+
 	<-forever
 }
 

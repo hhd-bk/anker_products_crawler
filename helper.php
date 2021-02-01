@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+use Elasticsearch\ClientBuilder;
 
 // RabbitMQ 
 // Name of queues
@@ -106,7 +107,7 @@ class DataInserterMySQL {
         $this->conn->close();
     }
 
-    // Create table in tanker database
+    // Create table in anker database
     public function create_table() {
         $sql_query = "
             CREATE TABLE product_details (
@@ -143,7 +144,7 @@ class DataInserterMySQL {
 
     // Insert data to table
     public function insert_product($data_item) {
-
+        
         $name = $data_item["name"];
         $url = $data_item["url"];
         $price_min = $this->check_null($data_item["price_min"]);
@@ -163,5 +164,4 @@ class DataInserterMySQL {
             file_put_contents($this->log_path, "FAIL INSERT: {$values}\n", FILE_APPEND);
         }
     }
-
 }

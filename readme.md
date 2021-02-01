@@ -91,3 +91,9 @@ php download_jobs.php
 
 ### Setup crontab for download jobs
 */10 * * * * php /path/to/download_jobs.php
+
+## Run container 
+
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+
+docker run -d --link 94a036e9ba61:elasticsearch -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.2
