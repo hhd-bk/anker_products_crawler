@@ -1,9 +1,2 @@
 # folders
-/.idea
-/config
 /temps
-/downloader/.idea
-/downloader/hello_world/
-/downloader/temps/
-/downloader/work_queues/
-/es_kibana_tut

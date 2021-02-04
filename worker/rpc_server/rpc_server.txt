@@ -1,0 +1,7 @@
+Recevied job {Platform:shopee ShopID:191065034 JobType:itemsList URL:https://shopee.vn/api/v2/search_items/?by=pop&limit=30&match_id=191065034&newest=0&order=desc&page_type=shop&version=2 Page:0}
+Sent  29  links to downloader
+Sending job to downloader {Platform:shopee ShopID:191065034 JobType:itemsList URL:https://shopee.vn/api/v2/search_items/?by=pop&limit=30&match_id=191065034&newest=30&order=desc&page_type=shop&version=2 Page:1}
+Send ack to requester  GMWJGSAPGATLMODYLUMGUQDIWWMNPPQI  with response
+Recevied job {Platform:shopee ShopID:191065034 JobType:itemsList URL:https://shopee.vn/api/v2/search_items/?by=pop&limit=30&match_id=191065034&newest=30&order=desc&page_type=shop&version=2 Page:1}
+No more links
+Send ack to requester  MGEGMGKBNPTNIWDYJDHVOYAFNNDFBKFG  with response

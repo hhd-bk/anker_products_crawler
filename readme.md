@@ -63,7 +63,23 @@ price_min_before_discount
 price_max_before_discount
 discount_stock
 description
-models -->
+models 
+
+Services"
+mysql
+rabbitmq
+elasticsearch
+kibana
+
+go 
+php
+-->
+
+
+<!-- # List shop id 
+https://shopee.vn/shop/185522883/search
+https://shopee.vn/shop/191065034/search
+https://shopee.vn/shop/16461019/search -->
 
 # Env
 Mysql (localhost)
@@ -94,6 +110,14 @@ php download_jobs.php
 
 ## Run container 
 
-docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+sudo docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.2
 
-docker run -d --link 94a036e9ba61:elasticsearch -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.2
+sudo docker run -d --link 3f63918e7237:elasticsearch -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.2
+
+
+# Structure
+download_jobs (php) -> queue (DOWNLOAD_JOBS) -> downloader (golang) -> queue(DOWNLOAD_RESULTS) -> results_consumer (php)
+                                                rpc call 
+<!-- 
+1. Read same configuration from file
+2. Handle network status -->
